@@ -6,5 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Luca Strefezza"
+  "author": "Luca Strefezza",
+  "dependencies": {
+    "chokidar": "^3.5.3"
+  }
 }
