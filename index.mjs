@@ -1,5 +1,6 @@
 import fs from "fs";
 import chokidar from "chokidar";
+import crypto from "crypto";
 
 const configFile = "./config.json";
 let config;
@@ -21,6 +22,20 @@ const watcher = chokidar.watch(rootDirPath, {
   },
 });
 
-watcher.on('add', (path, stats) => {
+watcher.on('add', async (path, stats) => {
   console.log(path);
+  generateHash(path);
 });
+
+function generateHash(filePath){
+  const hash = crypto.createHash("sha256");
+  const input = fs.createReadStream(filePath);
+  
+  input.on("data", (data) => {
+    hash.update(data);
+  });
+
+  input.on("end", () => {
+    console.log(hash.digest("hex"));
+  })
+}
