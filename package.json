@@ -1,0 +1,10 @@
+{
+  "name": "blockchain-verbalization",
+  "version": "1.0.0",
+  "description": "A module to verbalize in blockchain the hash of a file.",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luca Strefezza"
+}
