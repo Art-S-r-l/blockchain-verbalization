@@ -1,3 +1,4 @@
 {
-  "rootDirPath": "./test"
+  "rootDirPath": "./test",
+  "privateKey": "0x171ca394cfbe8d043dbf06a0c76ba7a7dd79cd232e39076014e685cd1a31fbb2"
 }

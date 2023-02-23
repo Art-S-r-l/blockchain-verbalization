@@ -1,6 +1,7 @@
 import fs from "fs";
 import chokidar from "chokidar";
 import crypto from "crypto";
+import Contract from "./contract.mjs";
 
 const configFile = "./config.json";
 let config;
@@ -12,7 +13,9 @@ try {
   process.exit(1);
 }
 
-const rootDirPath = JSON.parse(config).rootDirPath;
+config = JSON.parse(config);
+const rootDirPath = config.rootDirPath;
+const contract = new Contract(config.privateKey);
 
 const watcher = chokidar.watch(rootDirPath, {
   persistent: true,
@@ -23,7 +26,7 @@ const watcher = chokidar.watch(rootDirPath, {
 });
 
 watcher.on('add', async (path, stats) => {
-  console.log(path);
+  console.log(`Aggiunto nuovo file: ${path}`);
   generateHash(path);
 });
 
@@ -36,6 +39,8 @@ function generateHash(filePath){
   });
 
   input.on("end", () => {
-    console.log(hash.digest("hex"));
+    const fileHash = hash.digest("hex");
+    console.log(`Hash: ${fileHash}`);
+    contract.addHash(fileHash);
   })
 }

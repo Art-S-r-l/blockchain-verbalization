@@ -8,6 +8,7 @@
   },
   "author": "Luca Strefezza",
   "dependencies": {
-    "chokidar": "^3.5.3"
+    "chokidar": "^3.5.3",
+    "web3": "^1.8.2"
   }
 }
